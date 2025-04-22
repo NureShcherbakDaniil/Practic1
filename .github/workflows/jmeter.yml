@@ -1,11 +1,11 @@
-name: Run JMeter Performance Test
+name: Run JMeter Test
 
 on:
   push:
     branches: [ main ]
 
 jobs:
-  jmeter-test:
+  jmeter-run:
     runs-on: ubuntu-latest
 
     steps:
@@ -23,13 +23,6 @@ jobs:
           wget https://downloads.apache.org/jmeter/binaries/apache-jmeter-5.6.3.zip
           unzip apache-jmeter-5.6.3.zip
 
-      - name: Run JMeter Test Plan
+      - name: Run JMeter test
         run: |
-          apache-jmeter-5.6.3/bin/jmeter -n -t Practic1.jmx -l results.jtl -e -o report
-
-      - name: Upload HTML Report
-        uses: actions/upload-artifact@v3
-        with:
-          name: jmeter-html-report
-          path: report
-
+          apache-jmeter-5.6.3/bin/jmeter -n -t Practic1.jmx -l results.jtl
